@@ -3,16 +3,15 @@
 #define VERSION_INFO "Labyrinth Game"
 
 typedef struct {
-    char map[MAX_ROWS][MAX_COLS];
-    int rows;
-    int cols;
+  char map[MAX_ROWS][MAX_COLS];
+  int rows;
+  int cols;
 } Labyrinth;
 
 typedef struct {
-    int row;
-    int col;
+  int row;
+  int col;
 } Position;
-
 
 bool isValidPlayer(char playerId);
 bool loadMap(Labyrinth *labyrinth, const char *filename);
