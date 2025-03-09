@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
         printf("map  test\n");
 
         if (isConnected(labyrinth)) {
-          perror("The map is not connected!");
+          perror("The map is not connected!\n");
           return 1;
         }
 
