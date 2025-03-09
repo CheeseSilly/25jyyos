@@ -85,7 +85,6 @@ int main(int argc, char *argv[]) {
         perror("args is too many!");
         return 1;
       }
-      printf("%c\n", optarg[0]);
       if (isValidPlayer(optarg[0])) {
         player = optarg[0];
         player_flag = 1;
@@ -96,6 +95,9 @@ int main(int argc, char *argv[]) {
 
     case 1000: //--move DIRECTION
       if (player_flag == 1) {
+
+        // check move
+        printf("%s\n", "move test");
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
           return 0;
