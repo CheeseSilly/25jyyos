@@ -78,7 +78,6 @@ int main(int argc, char *argv[]) {
       } else {
         return 1;
       }
-      break;
 
     case 'p': //--player
       if (strlen(optarg) > 1) {
@@ -91,7 +90,6 @@ int main(int argc, char *argv[]) {
       } else {
         return 1;
       }
-      break;
 
     case 1000: //--move DIRECTION
       if (player_flag == 1) {
@@ -109,7 +107,7 @@ int main(int argc, char *argv[]) {
       } else {
         return 1;
       }
-      break;
+
     case '?':
       fprintf(stderr, "unknown options: -%c\n", optopt);
       printUsage();
