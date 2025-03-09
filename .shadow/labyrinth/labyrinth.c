@@ -142,7 +142,7 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
   }
 
   // num of row and col
-  int rNum, cNum = 0;
+  int rNum = 0, cNum = 0;
 
   file = fopen(filename, "r");
   if (file == NULL) {
