@@ -43,7 +43,6 @@ int main(int argc, char *argv[]) {
 
   // Initiate
   Labyrinth *labyrinth;
-  Position playerPosition;
   char player;
 
   int opt;
@@ -89,7 +88,6 @@ int main(int argc, char *argv[]) {
         return 1;
       }
       if (isValidPlayer(optarg[0])) {
-        playerPosition = findPlayer(labyrinth, optarg[0]);
         player = optarg[0];
         player_flag = 1;
       } else {
