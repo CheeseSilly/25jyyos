@@ -253,7 +253,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to down
-    if (strcmp(direction, "down")) {
+    if (strcmp(direction, "down") == 0) {
       Position newpos = {Playerpos.row + down[0], Playerpos.col + down[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
@@ -268,7 +268,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to left
-    if (strcmp(direction, "left")) {
+    if (strcmp(direction, "left") == 0) {
       Position newpos = {Playerpos.row + left[0], Playerpos.col + left[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
@@ -283,7 +283,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to right
-    if (strcmp(direction, "right")) {
+    if (strcmp(direction, "right") == 0) {
       Position newpos = {Playerpos.row + right[0], Playerpos.col + right[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
