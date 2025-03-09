@@ -85,6 +85,7 @@ int main(int argc, char *argv[]) {
         perror("args is too many!");
         return 1;
       }
+      printf("%s\n", optarg);
       if (isValidPlayer(optarg[0])) {
         player = optarg[0];
         player_flag = 1;
