@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
       if (loadMap(labyrinth, optarg)) {
         printf("map  test\n");
 
-        if (isConnected(labyrinth)) {
+        if (!isConnected(labyrinth)) {
           perror("The map is not connected!\n");
           return 1;
         }
