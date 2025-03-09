@@ -99,7 +99,6 @@ int main(int argc, char *argv[]) {
 
         // check move
         printf("%s\n", "move test");
-        printf("%d\n", labyrinth->cols);
 
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
@@ -283,7 +282,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to right
-    if (strcmp(direction, "up")) {
+    if (strcmp(direction, "right")) {
       Position newpos = {Playerpos.row + right[0], Playerpos.col + right[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
