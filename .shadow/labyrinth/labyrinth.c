@@ -81,6 +81,7 @@ int main(int argc, char *argv[]) {
 
     case 'p': //--player
       if (strlen(optarg) > 1) {
+        printf("%s\n", optarg);
         perror("args is too many!");
         return 1;
       }
