@@ -61,12 +61,13 @@ int main(int argc, char *argv[]) {
 
     case 'm': //--map|-m
 
-      printf("map  test");
       if (loadMap(labyrinth, optarg)) {
         if (isConnected(labyrinth)) {
           perror("The map is not connected!");
           return 1;
         }
+
+        printf("map  test\n");
 
         // print map
         for (int i = 0; i < labyrinth->rows; i++) {
