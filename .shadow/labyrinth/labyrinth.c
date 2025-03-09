@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
   int opt;
   int option_index = 0;
 
+  // flags
   int player_flag = 0;
 
   while ((opt = getopt_long(argc, argv, "m:p:", long_options, &option_index)) !=
@@ -62,12 +63,12 @@ int main(int argc, char *argv[]) {
     case 'm': //--map|-m
 
       if (loadMap(labyrinth, optarg)) {
-        printf("map  test\n");
 
         if (!isConnected(labyrinth)) {
           perror("The map is not connected!\n");
           return 1;
         }
+        printf("map  test\n");
 
         // print map
         for (int i = 0; i < labyrinth->rows; i++) {
