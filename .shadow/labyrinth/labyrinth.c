@@ -100,7 +100,6 @@ int main(int argc, char *argv[]) {
         // check move
         printf("%s\n", "move test");
 
-        printf("%d\n", labyrinth->cols);
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
           return 0;
@@ -152,9 +151,11 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
     return false;
   }
 
+  int c_tNum = 0;
   while ((ch = fgetc(file)) != EOF) {
     if (ch == '\n') {
       rNum++;
+      c_tNum = cNum;
       cNum = 0;
       continue;
     }
@@ -167,7 +168,7 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
     cNum++;
   }
 
-  labyrinth->cols = cNum;
+  labyrinth->cols = c_tNum;
   labyrinth->rows = rNum;
 
   fclose(file);
