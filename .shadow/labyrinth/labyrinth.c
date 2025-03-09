@@ -142,6 +142,7 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
     return false;
   }
 
+  printf("load test \n");
   // num of row and col
   int rNum = 0, cNum = 0;
 
