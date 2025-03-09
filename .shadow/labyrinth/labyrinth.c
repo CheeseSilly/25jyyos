@@ -3,6 +3,7 @@
 #include <assert.h>
 // #include <bits/getopt_ext.h>
 #include <bits/getopt_core.h>
+#include <cstdlib>
 #include <getopt.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -42,7 +43,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Initiate
-  Labyrinth *labyrinth = new Labyrinth();
+  Labyrinth *labyrinth = (Labyrinth *)malloc(sizeof(Labyrinth));
   char player;
 
   int opt;
