@@ -171,10 +171,11 @@ Position findPlayer(Labyrinth *labyrinth, char playerId) {
   Position pos = {-1, -1};
 
   for (int i = 0; i < labyrinth->rows; i++) {
-    for (int j = 0; j < labyrinth->cols; i++) {
+    for (int j = 0; j < labyrinth->cols; j++) {
       if (labyrinth->map[i][j] == playerId) {
         pos.row = i;
         pos.col = j;
+        break;
       }
     }
   }
@@ -185,7 +186,7 @@ Position findFirstEmptySpace(Labyrinth *labyrinth) {
   Position pos = {-1, -1};
 
   for (int i = 0; i < labyrinth->rows; i++) {
-    for (int j = 0; j < labyrinth->cols; i++) {
+    for (int j = 0; j < labyrinth->cols; j++) {
       if (labyrinth->map[i][j] == '.') {
         pos.row = i;
         pos.col = j;
