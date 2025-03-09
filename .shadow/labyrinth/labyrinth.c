@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < labyrinth->rows; i++) {
           printf("%s\n", labyrinth->map[i]);
         }
-        printf("map  test\n");
+        // printf("map  test\n");
 
       } else {
         return 1;
@@ -133,8 +133,9 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
   FILE *file;
   char ch;
 
-  printf("load test \n");
-  // num of row and col
+  // printf("load test \n");
+
+  //  num of row and col
   int rNum = 0, cNum = 0;
 
   file = fopen(filename, "r");
@@ -188,6 +189,7 @@ Position findFirstEmptySpace(Labyrinth *labyrinth) {
       if (labyrinth->map[i][j] == '.') {
         pos.row = i;
         pos.col = j;
+        break;
       }
     }
   }
