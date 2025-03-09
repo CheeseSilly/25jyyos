@@ -3,7 +3,6 @@
 #include <assert.h>
 // #include <bits/getopt_ext.h>
 #include <bits/getopt_core.h>
-#include <cstdlib>
 #include <getopt.h>
 #include <stdbool.h>
 #include <stdio.h>
