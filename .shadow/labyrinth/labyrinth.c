@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
         printf("%d %d\n", labyrinth->rows, labyrinth->cols);
 
         // print map
-        for (int i = 0; i <= labyrinth->rows; i++) {
+        for (int i = 0; i < labyrinth->rows; i++) {
           printf("%s\n", labyrinth->map[i]);
         }
         // printf("map  test\n");
@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
       if (player_flag == 1) {
 
         // check move
-        printf("%s\n", "move test");
+        // printf("%s\n", "move test");
 
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
@@ -175,7 +175,7 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
   }
 
   labyrinth->cols = c_tNum;
-  labyrinth->rows = rNum;
+  labyrinth->rows = rNum + 1;
 
   fclose(file);
 
@@ -244,7 +244,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
 
     // if player need to up
     if (strcmp(direction, "up") == 0) {
-      printf("mp test \n");
+      // printf("mp test \n");
       Position newpos = {Playerpos.row + up[0], Playerpos.col + up[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
