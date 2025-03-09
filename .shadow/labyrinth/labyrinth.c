@@ -136,12 +136,6 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
   FILE *file;
   char ch;
 
-  const char *dot = strrchr(filename, '.'); // find last '.'
-
-  if (!strcmp(dot + 1, "txt")) {
-    return false;
-  }
-
   printf("load test \n");
   // num of row and col
   int rNum = 0, cNum = 0;
