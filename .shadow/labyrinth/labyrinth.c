@@ -220,6 +220,8 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
   if (isValidPlayer(playerId)) {
     Playerpos = findPlayer(labyrinth, playerId);
 
+    printf("mp test \n");
+
     // if player is not in the map now
     if (Playerpos.row == -1 && Playerpos.col == -1) {
 
