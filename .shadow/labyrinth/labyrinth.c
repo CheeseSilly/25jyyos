@@ -72,9 +72,12 @@ int main(int argc, char *argv[]) {
         }
 
         // check rows and cols
-        printf("%d %d\n", labyrinth->rows, labyrinth->cols);
+        // printf("%d %d\n", labyrinth->rows, labyrinth->cols);
 
         // print map
+
+        printf("Current Map:\n");
+
         for (int i = 0; i < labyrinth->rows; i++) {
           printf("%s\n", labyrinth->map[i]);
         }
