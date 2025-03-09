@@ -3,8 +3,6 @@
 #include <assert.h>
 // #include <bits/getopt_ext.h>
 #include <bits/getopt_core.h>
-#include <cstddef>
-#include <cstdio>
 #include <getopt.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -44,13 +42,14 @@ int main(int argc, char *argv[]) {
   }
 
   // Initiate
-  Labyrinth *labyrinth;
-  Position playerPosition;
+  Labyrinth *labyrinth = (Labyrinth *)malloc(sizeof(Labyrinth));
   char player;
+  char *map_name;
 
   int opt;
   int option_index = 0;
 
+  // flags
   int player_flag = 0;
 
   while ((opt = getopt_long(argc, argv, "m:p:", long_options, &option_index)) !=
@@ -58,26 +57,32 @@ int main(int argc, char *argv[]) {
     switch (opt) {
     case 1001: // --version
       printf("%s", VERSION_INFO "1.0\n");
-      printf("%s", "Presented By JYY&SillyCheese:)");
+      printf("%s", "Presented By JYY&SillyCheese:)\n");
       printUsage();
       return 0;
 
     case 'm': //--map|-m
+
+      map_name = optarg;
       if (loadMap(labyrinth, optarg)) {
-        if (isConnected(labyrinth)) {
-          perror("The map is not connected!");
+
+        if (!isConnected(labyrinth)) {
+          perror("The map is not connected!\n");
           return 1;
         }
 
+        // check rows and cols
+        // printf("%d %d\n", labyrinth->rows, labyrinth->cols);
+
         // print map
+
+        printf("Current Map:\n");
+
         for (int i = 0; i < labyrinth->rows; i++) {
-          for (int j = 0; j < labyrinth->cols; j++) {
-            printf("%c", labyrinth->map[i][j]);
-            if (j == labyrinth->cols - 1 && i != labyrinth->rows - 1) {
-              printf("%c", '\n');
-            }
-          }
+          printf(" %s\n", labyrinth->map[i]);
         }
+        // printf("map  test\n");
+
       } else {
         return 1;
       }
@@ -85,11 +90,11 @@ int main(int argc, char *argv[]) {
 
     case 'p': //--player
       if (strlen(optarg) > 1) {
+        printf("%s\n", optarg);
         perror("args is too many!");
         return 1;
       }
       if (isValidPlayer(optarg[0])) {
-        playerPosition = findPlayer(labyrinth, optarg[0]);
         player = optarg[0];
         player_flag = 1;
       } else {
@@ -99,8 +104,20 @@ int main(int argc, char *argv[]) {
 
     case 1000: //--move DIRECTION
       if (player_flag == 1) {
+
+        // check move
+        // printf("%s\n", "move test");
+
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
+          printf("%c will turn %s:\n", player, optarg);
+
+          // print current map
+          for (int i = 0; i < labyrinth->rows; i++) {
+            printf(" %s\n", labyrinth->map[i]);
+          }
+
+          saveMap(labyrinth, map_name);
           return 0;
         } else {
           return 1;
@@ -109,10 +126,12 @@ int main(int argc, char *argv[]) {
         return 1;
       }
       break;
+
     case '?':
       fprintf(stderr, "unknown options: -%c\n", optopt);
       printUsage();
       return 1;
+      break;
     }
   }
 }
@@ -137,14 +156,10 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
   FILE *file;
   char ch;
 
-  const char *dot = strrchr(filename, '.'); // find last '.'
+  // printf("load test \n");
 
-  if (!strcmp(dot + 1, "txt")) {
-    return false;
-  }
-
-  // num of row and col
-  int rNum, cNum = 0;
+  //  num of row and col
+  int rNum = 0, cNum = 0;
 
   file = fopen(filename, "r");
   if (file == NULL) {
@@ -152,9 +167,11 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
     return false;
   }
 
+  int c_tNum = 0;
   while ((ch = fgetc(file)) != EOF) {
     if (ch == '\n') {
       rNum++;
+      c_tNum = cNum;
       cNum = 0;
       continue;
     }
@@ -167,8 +184,8 @@ bool loadMap(Labyrinth *labyrinth, const char *filename) {
     cNum++;
   }
 
-  labyrinth->cols = cNum;
-  labyrinth->rows = rNum;
+  labyrinth->cols = c_tNum;
+  labyrinth->rows = rNum + 1;
 
   fclose(file);
 
@@ -179,10 +196,11 @@ Position findPlayer(Labyrinth *labyrinth, char playerId) {
   Position pos = {-1, -1};
 
   for (int i = 0; i < labyrinth->rows; i++) {
-    for (int j = 0; j < labyrinth->cols; i++) {
+    for (int j = 0; j < labyrinth->cols; j++) {
       if (labyrinth->map[i][j] == playerId) {
         pos.row = i;
         pos.col = j;
+        break;
       }
     }
   }
@@ -193,10 +211,11 @@ Position findFirstEmptySpace(Labyrinth *labyrinth) {
   Position pos = {-1, -1};
 
   for (int i = 0; i < labyrinth->rows; i++) {
-    for (int j = 0; j < labyrinth->cols; i++) {
+    for (int j = 0; j < labyrinth->cols; j++) {
       if (labyrinth->map[i][j] == '.') {
         pos.row = i;
         pos.col = j;
+        break;
       }
     }
   }
@@ -227,9 +246,6 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
         return false;
       }
 
-      // remove old gamer position
-      labyrinth->map[Playerpos.row][Playerpos.col] = '.';
-
       // update new gamer position
       labyrinth->map[newPlayerpos.row][newPlayerpos.col] = playerId;
 
@@ -237,7 +253,8 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to up
-    if (strcmp(direction, "up")) {
+    if (strcmp(direction, "up") == 0) {
+      // printf("mp test \n");
       Position newpos = {Playerpos.row + up[0], Playerpos.col + up[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
@@ -252,7 +269,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to down
-    if (strcmp(direction, "down")) {
+    if (strcmp(direction, "down") == 0) {
       Position newpos = {Playerpos.row + down[0], Playerpos.col + down[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
@@ -267,7 +284,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to left
-    if (strcmp(direction, "left")) {
+    if (strcmp(direction, "left") == 0) {
       Position newpos = {Playerpos.row + left[0], Playerpos.col + left[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
@@ -282,7 +299,7 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
     }
 
     // if player need to right
-    if (strcmp(direction, "up")) {
+    if (strcmp(direction, "right") == 0) {
       Position newpos = {Playerpos.row + right[0], Playerpos.col + right[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
