@@ -45,6 +45,7 @@ int main(int argc, char *argv[]) {
   Labyrinth *labyrinth;
   labyrinth->rows = 0;
   labyrinth->cols = 0;
+  labyrinth->map[0][0] = '.';
   char player;
 
   int opt;
