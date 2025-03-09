@@ -98,6 +98,8 @@ int main(int argc, char *argv[]) {
 
         // check move
         printf("%s\n", "move test");
+
+        printf("%d\n", labyrinth->cols);
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
           return 0;
