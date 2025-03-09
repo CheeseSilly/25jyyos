@@ -235,9 +235,10 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
 
       return true;
     }
-    printf("mp test \n");
+
     // if player need to up
     if (strcmp(direction, "up")) {
+      printf("mp test \n");
       Position newpos = {Playerpos.row + up[0], Playerpos.col + up[1]};
       if (isEmptySpace(labyrinth, newpos.row, newpos.col)) {
 
