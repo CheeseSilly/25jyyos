@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
         printf("Current Map:\n");
 
         for (int i = 0; i < labyrinth->rows; i++) {
-          printf("%s\n", labyrinth->map[i]);
+          printf(" %s\n", labyrinth->map[i]);
         }
         // printf("map  test\n");
 
