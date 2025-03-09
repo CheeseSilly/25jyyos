@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     switch (opt) {
     case 1001: // --version
       printf("%s", VERSION_INFO "1.0\n");
-      printf("%s", "Presented By JYY&SillyCheese:)");
+      printf("%s", "Presented By JYY&SillyCheese:)\n");
       printUsage();
       return 0;
 
