@@ -110,6 +110,13 @@ int main(int argc, char *argv[]) {
 
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
+          printf("%c will %s\n", player, optarg);
+
+          // print current map
+          for (int i = 0; i < labyrinth->rows; i++) {
+            printf(" %s\n", labyrinth->map[i]);
+          }
+
           saveMap(labyrinth, map_name);
           return 0;
         } else {
