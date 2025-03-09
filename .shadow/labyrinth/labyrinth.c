@@ -42,10 +42,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Initiate
-  Labyrinth *labyrinth;
-  labyrinth->rows = 0;
-  labyrinth->cols = 0;
-  labyrinth->map[0][0] = '.';
+  Labyrinth *labyrinth = new Labyrinth();
   char player;
 
   int opt;
