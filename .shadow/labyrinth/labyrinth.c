@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
         printf("%d %d\n", labyrinth->rows, labyrinth->cols);
 
         // print map
-        for (int i = 0; i < labyrinth->rows; i++) {
+        for (int i = 0; i <= labyrinth->rows; i++) {
           printf("%s\n", labyrinth->map[i]);
         }
         // printf("map  test\n");
