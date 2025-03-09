@@ -71,6 +71,9 @@ int main(int argc, char *argv[]) {
           return 1;
         }
 
+        // check rows and cols
+        printf("%d %d\n", labyrinth->rows, labyrinth->cols);
+
         // print map
         for (int i = 0; i < labyrinth->rows; i++) {
           printf("%s\n", labyrinth->map[i]);
