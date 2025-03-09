@@ -68,7 +68,6 @@ int main(int argc, char *argv[]) {
           perror("The map is not connected!\n");
           return 1;
         }
-        printf("map  test\n");
 
         // print map
         for (int i = 0; i < labyrinth->rows; i++) {
@@ -79,6 +78,8 @@ int main(int argc, char *argv[]) {
             }
           }
         }
+        printf("map  test\n");
+
       } else {
         return 1;
       }
