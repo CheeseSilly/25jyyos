@@ -225,9 +225,6 @@ bool movePlayer(Labyrinth *labyrinth, char playerId, const char *direction) {
         return false;
       }
 
-      // remove old gamer position
-      labyrinth->map[Playerpos.row][Playerpos.col] = '.';
-
       // update new gamer position
       labyrinth->map[newPlayerpos.row][newPlayerpos.col] = playerId;
 
