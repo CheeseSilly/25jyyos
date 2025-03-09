@@ -44,6 +44,7 @@ int main(int argc, char *argv[]) {
   // Initiate
   Labyrinth *labyrinth = (Labyrinth *)malloc(sizeof(Labyrinth));
   char player;
+  char *map_name;
 
   int opt;
   int option_index = 0;
@@ -62,6 +63,7 @@ int main(int argc, char *argv[]) {
 
     case 'm': //--map|-m
 
+      map_name = optarg;
       if (loadMap(labyrinth, optarg)) {
 
         if (!isConnected(labyrinth)) {
@@ -102,6 +104,7 @@ int main(int argc, char *argv[]) {
 
         if (movePlayer(labyrinth, player, optarg)) {
           player_flag = 0;
+          saveMap(labyrinth, map_name);
           return 0;
         } else {
           return 1;
