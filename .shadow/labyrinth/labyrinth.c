@@ -78,6 +78,7 @@ int main(int argc, char *argv[]) {
             }
           }
         }
+        printf("%d", labyrinth->rows);
         printf("map  test\n");
 
       } else {
