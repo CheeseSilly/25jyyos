@@ -36,10 +36,10 @@ static struct option long_options[] = {
 
 int main(int argc, char *argv[]) {
   // check the arguments
-  if (argc <= 1) {
-    perror("Error:Invalid number of arguments.Please check the help");
-    return 1;
-  }
+  // if (argc <= 1) {
+  //  perror("Error:Invalid number of arguments.Please check the help");
+  //  return 1;
+  //}
 
   // Initiate
   Labyrinth *labyrinth = (Labyrinth *)malloc(sizeof(Labyrinth));
